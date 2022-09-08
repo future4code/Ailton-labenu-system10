@@ -1,0 +1,10 @@
+POST http://localhost:3003/class
+ConteContent-Type: application/json
+
+
+{
+"id": "1",
+"nome": "Fer",
+"modulo": "0"
+
+}
