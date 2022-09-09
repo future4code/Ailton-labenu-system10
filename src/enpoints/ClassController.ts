@@ -1,23 +1,24 @@
-import { classData } from "./../data/classData";
 import { Request, Response } from "express";
+import { classData } from "../data/classData";
 import Class from "../model/Class";
 
 export class ClassController {
   async createClass(req: Request, res: Response) {
+    const turmaId = new Date().getTime().toString()
     try {
-      const { name, module } = req.body;
+      const { nome, modulo } = req.body;
 
-      if (!name || !module) {
+      if (  !nome || !modulo) {
         throw new Error(" Todos os campos são obrigatórios!!");
       }
 
-      const Classe = new Class(Date.now().toString(), name, module);
+      const classe = new Class(turmaId, nome, modulo);
 
-      const classeData = new classData();
+      const ClasseData = new classData();
 
-      const resposta1 = await classeData.insertClass(Classe);
+      const resposta1 = await ClasseData.insertClass(classe);
 
-      res.status(201).send("Turma Criada com Sucesso!");
+      res.status(201).send({ message: resposta1 });
     } catch (error: any) {
       res.status(500).send({ message: error.message });
     }
@@ -38,17 +39,27 @@ export class ClassController {
     }
   }
 
-  async changeModule(req: Request, res: Response){
+  async changeModule(req: Request,res: Response) {
     try {
-      const id = req.params.id
-      const module = req.body
-      
-    res.status(200).send()
+      const {id,nome,module} = req.body
+
+      if(!id || !module){
+        throw new Error(" Todos os campos são obrigatórios!");
+      }
+
+      const classe = new Class(id,nome,module)
+
+     const ClassesData = new classData();
+    
+      const changeClass = await ClassesData.changeModule(classe);
+       
+      res.status(200).send(changeClass)
+
+
 
     } catch (error:any) {
       res.status(500).send({ message: error.message });
+      
     }
-
-
   }
 }
