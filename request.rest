@@ -1,10 +1,16 @@
-POST http://localhost:3003/class
-ConteContent-Type: application/json
 
+// Endpoint Criar turma
+POST http://localhost:3003/class
+Content-Type: application/json
 
 {
-"id": "1",
-"nome": "Fer",
-"modulo": "0"
+"name": "Turma do Patrick",
+"module": 4
 
 }
+
+###
+
+// Endpoint buscar turmas
+
+GET http://localhost:3003/allclasses
