@@ -6,9 +6,15 @@ export class classData extends BaseDataBase {
     await this.getConnetion()
       .insert({
         id: Classe.getIdClass(),
-        nome: Classe.getNameClass(),
-        modulo: Classe.getModuloClass(),
+        name: Classe.getNameClass(),
+        module: Classe.getModuloClass(),
       })
-      .into("Turma");
+      .into("ClassLabenu");
   }
+
+  async selectClass(){
+    const result = await this.getConnetion().select("*").from("ClassLabenu")
+    return result
+
+  }  
 }

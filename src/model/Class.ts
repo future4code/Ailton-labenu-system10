@@ -1,10 +1,10 @@
 class Class {
   private id: string;
-  private nome: string;
-  private modulo: number;
+  private name: string;
+  private module: number;
 
-  constructor(id: string, nome: string, modulo: number) {
-    (this.id = id), (this.nome = nome), (this.modulo = modulo);
+  constructor(id: string, name: string, module: number) {
+    (this.id = id), (this.name = name), (this.module = module);
   }
 
   getIdClass() {
@@ -12,11 +12,11 @@ class Class {
   }
 
   getNameClass() {
-    return this.nome;
+    return this.name;
   }
 
   getModuloClass() {
-    return this.modulo;
+    return this.module;
   }
 }
 
