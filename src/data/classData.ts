@@ -17,4 +17,12 @@ export class classData extends BaseDataBase {
     return result
 
   }  
+
+  async changeModule(Class:Class):Promise<any>
+  {
+    await this.getConnetion()
+    .update({module: Class.getModuloClass()})
+    .where({id: Class.getIdClass()})
+    .into("ClassLabenu")
+  }
 }

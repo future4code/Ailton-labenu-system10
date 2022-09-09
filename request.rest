@@ -14,3 +14,14 @@ Content-Type: application/json
 // Endpoint buscar turmas
 
 GET http://localhost:3003/allclasses
+
+
+###
+
+PUT http://localhost:3003/classChange
+Content-Type: application/json
+
+{
+    "id":"1662727807540",
+    "module":8
+}
