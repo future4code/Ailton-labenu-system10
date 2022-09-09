@@ -18,10 +18,27 @@ GET http://localhost:3003/allclasses
 
 ###
 
+//Endpoint alterar Modulos.
+
 PUT http://localhost:3003/classChange
 Content-Type: application/json
 
 {
     "id":"1662727807540",
     "module":8
+}
+
+###
+
+// Endpoint criação de estudante
+
+POST http://localhost:3003/student
+Content-Type: application/json
+
+{
+        "name": "Patrick",
+        "email": "patrick@patrick.com",
+        "birthdate": 2017-06-15,
+        "classId": "1662724748149",
+
 }
