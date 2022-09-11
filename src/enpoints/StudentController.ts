@@ -1,31 +1,62 @@
 import { Request, Response } from "express";
+import { classData } from "../data/classData";
 import { studentData } from "../data/StudentData";
 import Student from "../model/Student";
+import moment from "moment";
 
+export class StudentController {
+  async createStudent(req: Request, res: Response) {
+    const alunoId = new Date().getTime().toString();
+    try {
+      const { name, email, data_nasc, turma_id } = req.body;
+      //   const dados = req.body;
+      //   console.log(dados);
 
+      if (!name || !email || !data_nasc || turma_id) {
+        throw new Error(" Todos os campos são obrigatórios!!");
+      }
 
-export class StudentController { 
-    async createStudent(req: Request, res: Response) {
-        const alunoId = new Date().getTime().toString()
-        try {
-            const {name, email, birthdate, classId } = req.body
-            const dados = req.body
-            console.log(dados)
+      const estudanteData = new studentData();
+      const turmaData = new classData();
 
-            if (  !name || !email || !birthdate || classId) {
-                throw new Error(" Todos os campos são obrigatórios!!");
-              }
+      const dataConvertida = moment(data_nasc, "DD/MM/YYYY").format(
+        "YYYY-MM-DD"
+      );
+      const id = Date.now().toString();
+      const estudante = new Student(name, email, data_nasc, turma_id, id);
+      const response = await estudanteData.insertStudent(estudante);
 
-              const student = new Student(alunoId,name, email, birthdate, classId);
+      res.status(201).send({ message: response });
+      console.log(response);
 
-              const StudentData = new studentData();
+      //   const student = new Student(alunoId, name, email, data_nasc, classId);
 
-              const resposta1 = await StudentData.insertStudent(student);
+      //   const StudentData = new studentData();
 
-            res.status(201).send({ message: resposta1})
+      //   const resposta1 = await StudentData.insertStudent(student);
 
-        } catch (error: any) {
-            res.status(500).send({ message: error.message });
-          }
+      //   res.status(201).send({ message: resposta1 });
+    } catch (error: any) {
+      res.status(500).send({ message: error.message });
     }
+  }
+
+  async buscar(req: Request, res: Response) {
+    try {
+      const name = req.params.name;
+
+      const estudante = new studentData();
+
+      const buscarEstudante = await estudante.buscarEstudantePorNome(name);
+      console.log(buscarEstudante);
+
+      if (!buscarEstudante) {
+        throw new Error("Usuario não encontrado!!!");
+      }
+
+      res.status(200).send(buscarEstudante);
+    } catch (error: any) {
+      res.status(500).send({ message: error.message });
+    }
+  }
 }
