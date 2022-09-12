@@ -2,21 +2,21 @@ class Student {
   private id: string;
   private name: string;
   private email: string;
-  private birthdate: Date;
-  private classId: string | null;
+  private data_nasc: string;
+  private turma_id: string | null;
 
   constructor(
     id: string,
     name: string,
     email: string,
-    birthdate: Date,
-    classId: string | null
+    data_nasc: string,
+    turma_id: string | null
   ) {
-    (this.id = id),
-      (this.name = name),
-      (this.email = email),
-      (this.birthdate = birthdate),
-      (this.classId = classId);
+    (this.id = id), (this.name = name);
+    this.email = email;
+    this.data_nasc = data_nasc;
+    this.turma_id = turma_id;
+    this.id = id;
   }
   getId() {
     return this.id;
@@ -31,11 +31,11 @@ class Student {
   }
 
   getBirthdate() {
-    return this.birthdate;
+    return this.data_nasc;
   }
 
   getClassId() {
-    return this.classId;
+    return this.turma_id;
   }
 }
 

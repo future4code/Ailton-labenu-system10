@@ -5,7 +5,7 @@ Content-Type: application/json
 
 {
 "name": "Turma do Patrick",
-"module": 4
+"module": 5
 
 }
 
@@ -25,7 +25,7 @@ Content-Type: application/json
 
 {
     "id":"1662727807540",
-    "module":8
+    "module":9
 }
 
 ###
@@ -36,9 +36,14 @@ POST http://localhost:3003/student
 Content-Type: application/json
 
 {
-        "name": "Patrick",
-        "email": "patrick@patrick.com",
-        "birthdate": 2017-06-15,
-        "classId": "1662724748149",
+        "name": "fer",
+        "email": "fer@fer.com",
+        "data_nasc":"06/06/1986",
+        "turma_id": "1662724843822",
 
 }
+
+### 
+
+// Endpoint procurar Aluno por nome 
+GET http://localhost:3003/student/:Fernanda
